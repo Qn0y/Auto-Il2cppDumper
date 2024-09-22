@@ -22,7 +22,7 @@ bool isLibraryLoaded(const char *libraryName) {
     return false;
 }
 
-#define libTarget "libil2cpp.so"
+#define libTarget "liblogic.so"
 
 void dump_thread() {
     LOGI("Lib loaded");
@@ -64,9 +64,9 @@ JNIEXPORT jint JNICALL CallJNIOL(JavaVM *vm, void *reserved) {
     std::thread(dump_thread).detach();
 
     if (!pLibRealUnity)
-        pLibRealUnity = dlopen("librealmain.so", RTLD_NOW);
+        pLibRealUnity = dlopen("librealbytenn.so", RTLD_NOW);
     if (!pLibRealUnity)
-        pLibRealUnity = dlopen("librealunity.so", RTLD_NOW);
+        pLibRealUnity = dlopen("librealtbb.so", RTLD_NOW);
     if (!RealJNIOnLoad)
         RealJNIOnLoad = reinterpret_cast<CallJNI_OnLoad_t>(dlsym(pLibRealUnity, "JNI_OnLoad"));
     return RealJNIOnLoad(vm, reserved);
@@ -76,9 +76,9 @@ JNIEXPORT void JNICALL CallJNIUL(JavaVM *vm, void *reserved) {
     LOGI("OnUnload called");
 
     if (!pLibRealUnity)
-        pLibRealUnity = dlopen("librealmain.so", RTLD_NOW);
+        pLibRealUnity = dlopen("librealbytenn.so", RTLD_NOW);
     if (!pLibRealUnity)
-        pLibRealUnity = dlopen("librealunity.so", RTLD_NOW);
+        pLibRealUnity = dlopen("lirealtbb.so", RTLD_NOW);
     if (!RealJNIOnUnload)
         RealJNIOnUnload = reinterpret_cast<CallJNI_OnUnload_t>(dlsym(pLibRealUnity,
                                                                      "JNI_OnUnload"));
